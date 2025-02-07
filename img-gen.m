@@ -449,8 +449,6 @@ j=1;
 i=1;
 KA=1;
 
-(* SetDirectory["/Users/vsevolod/Documents/Wolfram Mathematica/CUBE/II/data/GEN"]; *)
-
 IMGS=Table[0,{j,1,BATCH}];
 dIMGS=Table[0,{j,1,BATCH}];
 d2IMGS=Table[0,{j,1,BATCH}];
@@ -526,16 +524,14 @@ dD3C[[j]]=d3GRAD[ra,\[Phi],vc];
 d2D3C[[j]]=D2out[ra,\[Phi],vc,0.000005];
 PRS[[j]]={vc,ra,\[Phi]};
 
-
-
 If[Mod[j,BATCH]==0,
-Export["img-"<>ToString[KA]<>".mx",IMGS];
-Export["d_img-"<>ToString[KA]<>".mx",dIMGS];
-Export["d2_img-"<>ToString[KA]<>".mx",d2IMGS];
-Export["3d-"<>ToString[KA]<>".mx",D3C];
-Export["d_3d-"<>ToString[KA]<>".mx",dD3C];
-Export["d2_3d-"<>ToString[KA]<>".mx",d2D3C];
-Export["pars-"<>ToString[KA]<>".mx",PRS];
+Export["img-"<>ToString[KA]<>".mx",IMGS]; (* Cube images *)
+Export["d_img-"<>ToString[KA]<>".mx",dIMGS]; (* First derivatives of images with respect to 3 translations and 3 rotations *)
+Export["d2_img-"<>ToString[KA]<>".mx",d2IMGS]; (* Second derivatives of images with respect to 21 possible pairs of translations and rotations *)
+Export["3d-"<>ToString[KA]<>".mx",D3C]; (* x, y, and z coordinates of the three cube's vertices *)
+Export["d_3d-"<>ToString[KA]<>".mx",dD3C]; (* First derivatives of vertex coordinates *)
+Export["d2_3d-"<>ToString[KA]<>".mx",d2D3C]; (* Second derivatives of vertex coordinates *)
+(*Export["pars-"<>ToString[KA]<>".mx",PRS];*)
 Print["saved ",KA," batch"];
 j=0;
 KA++;
